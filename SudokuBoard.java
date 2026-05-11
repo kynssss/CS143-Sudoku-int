@@ -140,42 +140,23 @@ public class SudokuBoard {
 
         return true;
     }
-    /*public boolean solve() {
-      //System.out.println(toString());
-      if(allPlaced()) {
-         return true;
-      }
-      for(int c = 0; c < board[0].length; c++) {
-         for(int r = 0; r < board.length; r++) {
-            if(isSafe(r,c)) {
-               place(r,c);
-               if(solve()) {
-                  return true;
-               }
-               remove(r,c);
-            }
-         }
-      }
-      return false;
-   }
-   */
    
     public boolean solve() {
        if(!isValid()){
-                return false;
-             }
+          return false;
+       }
        if(isSolved()) {
-                return true;
-             }
+          return true;
+       }
        for(int c = 0; c < board[0].length; c++) {
           for(int r = 0; r < board.length; r++) {
              if(board[r][c] == 0) {
                 for(int i = 1; i <= 9; i++) {
-                   board[r][c] = i;
+                   board[r][c] = i; //moving forward by placing a digit.
                    if(isValid() && solve()) {
                       return true;
                    }
-                   board[r][c] = 0;
+                   board[r][c] = 0; //backtracking by undo the digit.
                 }
                 return false;
              }
@@ -184,13 +165,6 @@ public class SudokuBoard {
        return false;
     }
     
-  //   public boolean isSafe(int row, int colomn) {
-//        if(board[row][colomn] != EMPTY) {
-//           return false;
-//        }
-//        
-//        if(int i = row, j = col; i >= 0 && j >= 0; i--, j--)
-//     }
 
     public String toString() {
         String result = "";
