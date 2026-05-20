@@ -6,7 +6,12 @@ public class SudokuEngine {
       String fileName = "boards/data1.sdk";
       SudokuBoard board = new SudokuBoard(fileName);  
       System.out.println(board); 
-      if (board.solve()) {
+      if (!board.isValid()) {
+        System.out.println("The board can't be solved.");
+      } else if (board.isSolved()) {
+        System.out.println("The board is already solved."); 
+      } else if (board.solve()) {
+        System.out.println("The Sudoku puzzle solved successfully:");
         System.out.println(board);
       } else {
         System.out.println("This Sudoku puzzle couldn't be solved.");
